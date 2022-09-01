@@ -28,7 +28,7 @@ void dfs(string startWord, string endWord, vector<string> path, unordered_map<st
     path.pop_back();
 }
 
-int ladderLength(string beginWord, string endWord, vector<string> &wordList )
+int ladderLength(string beginWord, string endWord, vector<string> &wordList)
 {
     if (find(wordList.begin(), wordList.end(), endWord) == wordList.end())
         return 0;
@@ -70,7 +70,6 @@ int ladderLength(string beginWord, string endWord, vector<string> &wordList )
 
 vector<vector<string>> findLadders(string beginWord, string endWord, vector<string> &wordList)
 {
-
 }
 
 int main()
