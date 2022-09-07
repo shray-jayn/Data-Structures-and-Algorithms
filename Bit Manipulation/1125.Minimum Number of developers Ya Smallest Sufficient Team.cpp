@@ -22,6 +22,9 @@ vector<int> smallestSufficientTeam(vector<string> &req_skills, vector<vector<str
     }
 
 
+    
+
+
 
         
 }
