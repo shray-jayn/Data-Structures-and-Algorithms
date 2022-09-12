@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long int ll;
 
-int MaximumConsecutiveOnes(vector<int> arr, int k)
+int MaximumConsecutiveOnes(vector<int> arr)
 {
     int n = arr.size();
 
@@ -17,9 +17,10 @@ int MaximumConsecutiveOnes(vector<int> arr, int k)
             count++;
         }
 
-        while (count > k)
+        while (count > 1)
         {
             j++;
+
             if (arr[j] == 0)
             {
                 count--;
@@ -28,7 +29,7 @@ int MaximumConsecutiveOnes(vector<int> arr, int k)
 
         int len = i - j;
 
-        ans = max(len, ans);
+        ans = max(ans, len);    
     }
 
     return ans;
