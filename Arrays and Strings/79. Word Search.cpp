@@ -3,8 +3,8 @@ using namespace std;
 typedef long long int ll;
 
 
-int main()
-{
 
-    return 0;
+int main(){
+
+  return 0;
 }
