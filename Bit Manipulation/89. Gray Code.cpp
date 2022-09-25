@@ -14,6 +14,8 @@ vector<int> grayCode(int n)
 
     vector<int> mres;
 
+    // 0 lagane ke liye
+
     for (int i = 0; i < rres.size(); i++)
     {
         string rstr = to_string(rres[i]);
@@ -22,6 +24,8 @@ vector<int> grayCode(int n)
         mres.push_back(stoi(rstr));
     }
 
+    // ulta utaya or 1 laga dia agge
+
     for (int i = rres.size() - 1; i >= 0; i--)
     {
         string rstr = to_string(rres[i]);
@@ -29,6 +33,8 @@ vector<int> grayCode(int n)
 
         mres.push_back(stoi(rstr));
     }
+
+    return mres;
 }
 
 int main()
