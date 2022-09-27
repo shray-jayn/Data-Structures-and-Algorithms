@@ -20,13 +20,13 @@ int main()
     {
         int mask = (1 << i);
 
-        if (flag)
+        if (flag == true)    
         {
             if ((n & mask) != 0) // bit is on
             {
                 cout << 1;
 
-                int setMask = (1 << j);
+                int setMask = (1 << j);       // us bit ko add kar dia reverse me mask ke sath or karke 
                 rev = rev or setMask;
             }
             else // bit is off
@@ -34,7 +34,7 @@ int main()
                 cout << 0;
             }
 
-            j++;
+            j++;  // j ko move kara 
         }
         else
         {
