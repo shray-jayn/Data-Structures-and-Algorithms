@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long int ll;
 
-bool isPowerOfFour(int n)
+bool isPowerOfFour(int n) // must be even power of 2
 {
     int fac = 0b01010101010101010101010101010101;
 
@@ -10,14 +10,14 @@ bool isPowerOfFour(int n)
     {
         if ((n & (n - 1)) == 0)
         {
-            if ((fac & n) > 0)
+            if ((fac & n) > 0) // if(fac & n == 0 ) => number is odd power of 2 => false
             {
                 return true;
             }
         }
     }
 
-    return false; 
+    return false;
 }
 
 int main()
