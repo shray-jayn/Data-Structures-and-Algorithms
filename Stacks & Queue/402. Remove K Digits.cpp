@@ -6,8 +6,6 @@ string removeKdigits(string num, int k)
 {
     int n = num.size();
 
-    string res = "";
-
     stack<char> st;
 
     for (int i = 0; i < n; i++)
@@ -43,6 +41,8 @@ string removeKdigits(string num, int k)
         --k;
         st.pop();
     }
+
+    string res = "";
 
     while (!st.empty())
     {
