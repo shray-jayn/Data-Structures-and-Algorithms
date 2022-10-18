@@ -13,7 +13,7 @@ void dfs(int i, int j, vector<vector<int>> &grid, queue<pair<int, int>> &q, vect
     if (grid[i][j] == 1)
     {
         grid[i][j] = -1;
-        cell[i][j] = 0;
+        cell[i][j] = 0;  // intial dist = 0 
 
         q.push({i, j});
 
