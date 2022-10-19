@@ -11,8 +11,8 @@ bool isOperator(char c)
 int calculate(string s)
 {
 
-    int no = 0;
-    char ps = '+';
+    int num = 0;
+    char prevSign = '+';
 
     stack<int> stk;
 
@@ -21,38 +21,38 @@ int calculate(string s)
 
         if (isdigit(s[i]))
         {
-            no = no * 10 + (s[i] - '0');
+            num = num * 10 + (s[i] - '0');
         }
 
         if (isOperator(s[i]) || i == s.length() - 1)
         {
 
-            if (ps == '+')
+            if (prevSign == '+')
             {
-                stk.push(no);
+                stk.push(num);
             }
 
-            else if (ps == '-')
+            else if (prevSign == '-')
             {
-                stk.push(-no);
+                stk.push(-num);
             }
 
-            else if (ps == '*')
-            {
-                int top = stk.top();
-                stk.pop();
-                stk.push(top * no);
-            }
-
-            else if (ps == '/')
+            else if (prevSign == '*')
             {
                 int top = stk.top();
                 stk.pop();
-                stk.push(top / no);
+                stk.push(top * num);
             }
 
-            no = 0;
-            ps = s[i];
+            else if (prevSign == '/')
+            {
+                int top = stk.top();
+                stk.pop();
+                stk.push(top / num);
+            }
+
+            num = 0;
+            prevSign = s[i];
         }
     }
 
@@ -66,7 +66,6 @@ int calculate(string s)
 
     return res;
 }
-
 
 int main()
 {
