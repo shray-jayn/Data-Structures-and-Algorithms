@@ -2,5 +2,8 @@
     "files.associations": {
         "random": "cpp",
         "new": "cpp"
-    }
+    },
+    "cSpell.words": [
+        "Visisted"
+    ]
 }
