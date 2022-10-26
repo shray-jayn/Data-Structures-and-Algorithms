@@ -12,7 +12,7 @@ struct Pair
     }
 
     Pair(int js, int jl)
-    {
+    { 
         this->justLarger = jl;
         this->justSmaller = js;
     }

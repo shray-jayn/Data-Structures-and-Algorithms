@@ -16,7 +16,7 @@ long long int calculate(int arr[], int n)
     for (auto it : mp)
     {
         int val = it.second;
-        count += ((val - 1) * val) / 2;
+        count += ((val - 1) * val) / 2;  // Nc2 pairs 
     }
 
     return count;

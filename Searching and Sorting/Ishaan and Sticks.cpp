@@ -4,31 +4,44 @@ typedef long long int ll;
 
 vector<int> square(int arr[], int n)
 {
-    // Complete the function
-    map<int, int> mp;
-    int fre = 0;
-    int ele = 0;
+    unordered_map<int, int> mp;
+
     for (int i = 0; i < n; i++)
     {
         mp[arr[i]]++;
     }
+
+    int maxArea = 0;
+    int sq = 0;
+
     for (auto it : mp)
     {
-        if (it.second >= 4)
+        int key = it.first;
+        int freq = it.second;
+
+        if (freq >= 4)
         {
-            fre = it.second / 4;
-            ele = it.first;
+            int area = key * key;
+
+            if (area > maxArea)
+            {
+                maxArea = area;
+                sq = freq / 4;
+            }
         }
     }
-    vector<int> answer;
-    if (fre == 0 && ele == 0)
+
+    vector<int> ans;
+
+    if (maxArea == 0)
     {
-        answer.push_back(-1);
+        ans.push_back(-1);
     }
     else
     {
-        answer.push_back((ele * ele));
-        answer.push_back((fre));
+        ans.push_back(maxArea);
+        ans.push_back(sq);
     }
-    return answer;
+
+    return ans;
 }
