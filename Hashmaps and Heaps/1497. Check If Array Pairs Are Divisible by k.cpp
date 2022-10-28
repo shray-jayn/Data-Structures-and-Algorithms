@@ -8,7 +8,7 @@ bool canArrange(vector<int> &arr, int k)
 
     unordered_map<int, int> remainderMap;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)  // get count of all remainders in the map 
     {
         int rem = (arr[i] % k);
 
@@ -21,12 +21,12 @@ bool canArrange(vector<int> &arr, int k)
 
         int freq = remainderMap[rem];
 
-        if (rem == 0 and freq % 2 != 0)
+        if (rem == 0 and freq % 2 != 0)  // if remainder is == 0 and all pairs can't be formed 
         {
             return false;
         }
 
-        else if (2 * rem == k and freq % 2 != 0)
+        else if (2 * rem == k and freq % 2 != 0) // if remainder is == k/2 and all pairs can't be formed 
         {
             return false;
         }

@@ -18,7 +18,7 @@ int subarrayWithContiguous(vector<int> arr)
 
         for (int j = i + 1; j < n; j++)
         {
-            if (checkDuplicate.find(arr[j]) != checkDuplicate.end())
+            if (checkDuplicate.find(arr[j]) != checkDuplicate.end())  // duplicate is present
             {
                 break;
             }
@@ -30,7 +30,7 @@ int subarrayWithContiguous(vector<int> arr)
             minEle = min(minEle, arr[j]);
             maxEle = max(maxEle, arr[j]);
 
-            if (maxEle - minEle == j - i)
+            if (maxEle - minEle == j - i)  // condition for contigious elements
             {
                 int len = j - i + 1;
 

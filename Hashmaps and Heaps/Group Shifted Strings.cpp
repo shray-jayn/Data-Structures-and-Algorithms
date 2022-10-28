@@ -35,7 +35,7 @@ vector<vector<string>> groupShiftedStrings(vector<string> strs)
     {
         string key = getKey(str);
 
-        if (mp.find(key) == mp.end())
+        if (mp.find(key) == mp.end())  
         {
             vector<string> arrList;
             arrList.push_back(str);

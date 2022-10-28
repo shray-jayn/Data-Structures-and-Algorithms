@@ -13,7 +13,7 @@ void reconstructItinearyUsingHashmaps(unordered_map<string, string> mp)
 
         potentialSource[destination] = false;
 
-        if (potentialSource.find(source) == potentialSource.end())
+        if (potentialSource.find(source) == potentialSource.end())  // if not present could be a potential source 
         {
             potentialSource[source] = true;
         }
