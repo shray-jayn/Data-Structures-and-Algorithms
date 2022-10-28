@@ -19,19 +19,19 @@ int longestSubarraySumDivisibleByK(vector<int> arr, int k)
         sum += arr[i];
         rem = sum % k;
 
-        if (rem < 0)
+        if (rem < 0) // make remainder positicve
         {
             rem += k;
         }
 
-        if (mp.find(rem) != mp.end())
+        if (mp.find(rem) != mp.end()) // remainder already exist
         {
             int idx = mp[rem];
             int len = i - idx;
 
             ans = max(ans, len);
         }
-        else
+        else // remainder dosen't exist
         {
             mp[rem] = i;
         }
