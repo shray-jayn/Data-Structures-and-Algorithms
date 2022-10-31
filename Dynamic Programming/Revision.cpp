@@ -363,24 +363,270 @@ int lcs(string s1, string s2, int n1, int n2)
     return dp[n1][n2];
 }
 
-// Matrix chain multiplication 
+// Matrix chain multiplication
 
+// Matrix chain Multiplication General Format
 
-// Palindrome Partition problem 
+int mcm()
+{
+}
 
+// Recursive
+
+int matrixChainMultiplication(vector<int> &matrix, int i, int j)
+{
+    // Base case
+
+    if (i >= j)
+    {
+        return 0;
+    }
+
+    int minCost = INT_MAX;
+
+    for (int k = i; k <= j - 1; k++)
+    {
+        int part1 = matrixChainMultiplication(matrix, i, k);
+        int part2 = matrixChainMultiplication(matrix, k + 1, j);
+        int cost = matrix[i - 1] * matrix[k] * matrix[j];
+
+        int temp = part1 + part2 + cost;
+
+        minCost = min(minCost, temp);
+    }
+
+    return minCost;
+}
+
+// Memoization
+
+vector<vector<int>> dp; // [n+1][n+1];  inialize with -1 ;
+
+int matrixChainMultiplication(vector<int> &matrix, int i, int j)
+{
+    // Base case
+
+    if (i >= j)
+    {
+        return 0;
+    }
+
+    if (dp[i][j] != -1)
+    {
+        return dp[i][j];
+    }
+
+    int minCost = INT_MAX;
+
+    for (int k = i; k <= j - 1; k++)
+    {
+        int part1 = matrixChainMultiplication(matrix, i, k);
+        int part2 = matrixChainMultiplication(matrix, k + 1, j);
+        int cost = matrix[i - 1] * matrix[k] * matrix[j];
+
+        int temp = part1 + part2 + cost;
+
+        minCost = min(minCost, temp);
+    }
+
+    return dp[i][j] = minCost;
+}
+
+// Palindrome Partition problem
+
+// Recursive
+
+bool isPalindrome(string s, int i, int j)
+{
+    if (i == j)
+    {
+        return false;
+    }
+
+    if (i > j)
+    {
+        return false;
+    }
+
+    while (i < j)
+    {
+        if (s[i] != s[j])
+        {
+            return false;
+        }
+        i++;
+        j--;
+    }
+
+    return true;
+}
+
+int palindromePartitioning(string &s, int i, int j)
+{
+    if (i >= j) // i == j ==> 1 element only ,,, cant't be partitioned more
+    {
+        return 0;
+    }
+
+    if (isPalindrome(s, i, j) == true) // already a palindrome so no need to partion
+    {
+        return 0;
+    }
+
+    int minCost = INT_MAX;
+
+    for (int k = 0; k < j; k++)
+    {
+        int part1 = palindromePartitioning(s, i, k);
+        int part2 = palindromePartitioning(s, k + 1, j);
+
+        int tempCost = part1 + part2 + 1;
+
+        minCost = min(minCost, tempCost);
+    }
+
+    return minCost;
+}
 
 // Scrambled strings
 
+bool scrambleStrings(string a, string b)
+{
+}
 
-//Egg dropping problem 
+// Egg dropping problem
 
+int eggDropProblem(int egg, int floor)
+{
+}
 
-// Evaluate expression to true 
+// Evaluate expression to true
 
+int evaluateExpressionTrue(string str, int i, int j, bool isTrue)
+{
+    // Base Case
 
-// Optimal Binary search tree 
+    if (i > j)
+    {
+        return 0;
+    }
 
+    if (i == j)
+    {
+        if (isTrue == true)
+        {
+            if (str[i] == 'T')
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
+        else if (isTrue == false)
+        {
+            if (str[i] == 'F')
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
 
+    // Choice diagram
 
+    int ans = 0;
 
+    for (int k = i + 1; k < j; k += 2)
+    {
+        int leftTrue = evaluateExpressionTrue(str, i, k - 1, 1);
+        int leftFalse = evaluateExpressionTrue(str, i, k - 1, 0);
+        int rightTrue = evaluateExpressionTrue(str, k + 1, j, 1);
+        int rightFalse = evaluateExpressionTrue(str, k + 1, j, 0);
+
+        int exp = str[k];
+
+        if (exp == '^')
+        {
+            if (isTrue)
+            {
+                ans += (leftTrue * rightFalse) + (leftFalse * rightTrue);
+            }
+            else
+            {
+                ans += (leftTrue * rightTrue) + (leftFalse * rightFalse);
+            }
+        }
+        if (exp == '&')
+        {
+            if (isTrue)
+            {
+                ans += (leftTrue * rightFalse) + (leftFalse * rightTrue) + (leftTrue * rightTrue);
+            }
+            else
+            {
+                ans += (leftTrue * rightFalse);
+            }
+        }
+        if (exp == '|')
+        {
+            if (isTrue)
+            {
+                ans += (leftTrue * rightFalse) + (leftFalse * rightTrue) + (leftTrue * rightTrue);
+            }
+            else
+            {
+                ans += (leftFalse * rightFalse);
+            }
+        }
+    }
+
+    return ans;
+}
+
+// Optimal Binary search tree
+
+int optimalBinarySearchTree(vector<int> &frequency, int i, int j)
+{
+}
+
+// Dp on Trees
+
+struct TreeNode
+{
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+// General Format of dp on trees
+
+int solve(TreeNode *root, int &res)
+{
+}
+
+// Diameter of a Binary Tree
+
+int binaryTreeDiameter(TreeNode *root, int &result)
+{
+}
+
+// Maximum path sum from any node to any node
+
+int maximumSumFromAnyNode(TreeNode *root, int &result)
+{
+}
+
+// Maximum path sum from any leaf to any leaf
+
+int maximumSumFromLeafToLeaf(TreeNode *root, int &result)
+{
+}
