@@ -7,6 +7,7 @@ bool bfs(int node, vector<int> &color, vector<vector<int>> &graph)
     queue<int> q;
     q.push(node);
     color[node] = 1;
+    
     while (!q.empty())
     {
         int adjacent = q.front();

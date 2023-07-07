@@ -24,7 +24,7 @@ bool detect(int src, vector<int> adj[], int vis[])
                 q.push({ajdNode, node});
             }
 
-            else if (parent != ajdNode) // when parent node is visited and its an adj node it doesnot form a cycle
+            else if (parent != ajdNode) // if adj node is not parent node and the adj node is visited -> cycle detected
             {
                 return true;
             }
