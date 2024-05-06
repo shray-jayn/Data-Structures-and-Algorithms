@@ -63,80 +63,56 @@ int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int
 
 int findCheapestPrice(int n, vector<vector<int>> &flights, int src, int dst, int k)
 {
-    int m = flights.size();
+    queue<pair<int, pair<int, int>>> q; //{stops, nodereached, cost};
 
-    vector<vector<pair<int, int>>> graph(n);
+    vector<pair<int, int>> adjLs[n];
 
-    for (int i = 0; i < m; i++)
+    vector<int> dis(n, 1e9);
+
+    dis[src] = 0;
+
+    // Creating the adjacency list
+
+    for (auto it : flights)
     {
-        for (int j = 0; j < m; j++)
-        {
-            int from = flights[i][0];
-            int to = flights[i][1];
-            int price = flights[i][2];
-
-            graph[to].push_back({to, price});
-        }
+        adjLs[it[0]].push_back({it[1], it[2]});
     }
 
-    vector<int> dist(n, INT_MAX);
-    dist[src] = 0;
+    q.push({0, {src, 0}}); // Starting from source
 
-    // initialize the distance vector
-    for (int i = 0; i < m; i++)
+    while (!q.empty())
     {
-        int from = flights[i][0];
-        int to = flights[i][1];
-        int price = flights[i][2];
+        auto it1 = q.front();
+        q.pop();
 
-        if (from == src)
+        int stops = it1.first;
+        int node = it1.second.first;
+        int cost = it1.second.second;
+
+        if (stops > k)
         {
-            dist[to] = price;
+            continue;
         }
-    }
 
-    // create a priority queue(Min heap)
-
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-
-    // push root into pq; <dist,node>
-
-    pq.push({0, src});
-
-    int stops = 0;
-    int ans = INT_MAX;
-
-    while (!pq.empty() and stops <= k)
-    {
-        int prevPrice = pq.top().first;
-        int prev = pq.top().second;
-
-        pq.pop();
-
-        for (auto it : graph[prev])
+        for (auto it2 : adjLs[node])
         {
-            int next = it.first;
-            int nextPrice = it.second;
+            int nnode = it2.first;
+            int ncost = it2.second;
 
-            if (dist[next] > prevPrice + nextPrice)
+            if (stops <= k && ncost + cost < dis[nnode])
             {
-                dist[next] = prevPrice + nextPrice;
-                pq.push({dist[next], next});
-            }
-
-            if (next == dst)
-            {
-                ans = min(ans, dist[next]);
+                dis[nnode] = ncost + cost;
+                q.push({stops + 1, {nnode, ncost + cost}});
             }
         }
-
-        stops++;
     }
 
-    if (ans == INT_MAX)
-        return -1;
+    if (dis[dst] == 1e9)
+    {
+        return {-1};
+    }
 
-    return ans;
+    return dis[dst];
 }
 
 int main()

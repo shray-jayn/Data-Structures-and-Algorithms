@@ -53,7 +53,7 @@ bool btreeGameWinningMove(TreeNode *root, int n, int x)
     int leftRightMax = max(left, right);
 
     if (temp->val != root->val)
-    {
+    {   
         parent = n - (left + right + 1);
     }
 

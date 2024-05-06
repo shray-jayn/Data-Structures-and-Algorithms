@@ -12,29 +12,24 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-void inorder(TreeNode *root, vector<TreeNode *> &traversal)
+void Smallestkth(TreeNode *root, int &k, int &ans)
 {
     if (root == NULL)
-    {
         return;
-    }
 
-    inorder(root->left, traversal);
+    Smallestkth(root->left, k, ans);
 
-    traversal.push_back(root);
+    k--;
+    if (k == 0)
+        ans = root->val;
 
-    inorder(root->right, traversal);
+    return Smallestkth(root->right, k, ans);
 }
-
-void constBST(TreeNode *root, vector<TreeNode *> &traversal)
+int kthSmallest(TreeNode *root, int k)
 {
-}
-
-TreeNode *balanceBST(TreeNode *root)
-{
-    vector<TreeNode *> traversal;
-
-    inorder(root, traversal);
+    int ans = -1;
+    Smallestkth(root, k, ans);
+    return ans;
 }
 
 int main()

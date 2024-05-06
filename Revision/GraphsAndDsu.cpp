@@ -476,7 +476,7 @@ int findMotherVertex(int n, vector<vector<int>> graph)
     return -1;
 }
 
-// Number of Island 2
+//  land 2
 
 int findparent(int node, vector<int> &parent) // find parent function (fro disjoint set)
 {

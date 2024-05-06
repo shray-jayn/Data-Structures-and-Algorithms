@@ -12,29 +12,25 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-void inorder(TreeNode *root, vector<TreeNode *> &traversal)
+TreeNode *searchBST(TreeNode *root, int val, int &ceil)
 {
     if (root == NULL)
     {
-        return;
+        return NULL;
     }
 
-    inorder(root->left, traversal);
+    if (root->val == val)
+    {
+        return root;
+    }
 
-    traversal.push_back(root);
+    else if (root->val > val)
+    {
+        ceil = root->val;
+        return searchBST(root->left, val, ceil);
+    }
 
-    inorder(root->right, traversal);
-}
-
-void constBST(TreeNode *root, vector<TreeNode *> &traversal)
-{
-}
-
-TreeNode *balanceBST(TreeNode *root)
-{
-    vector<TreeNode *> traversal;
-
-    inorder(root, traversal);
+    return searchBST(root->right, val, ceil);
 }
 
 int main()

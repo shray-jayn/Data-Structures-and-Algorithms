@@ -39,3 +39,4 @@ ListNode *middleNode(ListNode *head) // Returns second middle
     }
     return slow;
 }
+

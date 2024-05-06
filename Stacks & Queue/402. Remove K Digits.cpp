@@ -10,7 +10,6 @@ string removeKdigits(string num, int k)
 
     for (int i = 0; i < n; i++)
     {
-
         if (st.size() == 0)
         {
             st.push(num[i]);
@@ -26,6 +25,7 @@ string removeKdigits(string num, int k)
 
             st.push(num[i]);
         }
+
         else
         {
             st.push(num[i]);
@@ -36,6 +36,7 @@ string removeKdigits(string num, int k)
             st.pop();
         }
     }
+    
     while (k && !st.empty())
     {
         --k;

@@ -12,7 +12,7 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-void markParent(TreeNode *root, unordered_map<TreeNode *, TreeNode *> &parent_track, TreeNode *target)
+void markParent(TreeNode *root, unordered_map<TreeNode *, TreeNode *> &parent_track)
 {
     queue<TreeNode *> q;
 
@@ -41,7 +41,7 @@ vector<int> distanceK(TreeNode *root, TreeNode *target, int k)
 {
     unordered_map<TreeNode *, TreeNode *> parent_track; // node -> parent
 
-    markParent(root, parent_track, target); // mark all the parents ;
+    markParent(root, parent_track); // mark all the parents ;
 
     unordered_map<TreeNode *, bool> visited;
 

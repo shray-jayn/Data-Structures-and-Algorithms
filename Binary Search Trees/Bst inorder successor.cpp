@@ -12,29 +12,22 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-void inorder(TreeNode *root, vector<TreeNode *> &traversal)
+TreeNode *inorderSuccessor(TreeNode *root, TreeNode *p)
 {
-    if (root == NULL)
+    TreeNode *successor = NULL;
+    while (root != NULL)
     {
-        return;
+        if (p->val >= root->val)
+        {
+            root = root->right;
+        }
+        else
+        {
+            successor = root;
+            root= root->left;
+        }
     }
-
-    inorder(root->left, traversal);
-
-    traversal.push_back(root);
-
-    inorder(root->right, traversal);
-}
-
-void constBST(TreeNode *root, vector<TreeNode *> &traversal)
-{
-}
-
-TreeNode *balanceBST(TreeNode *root)
-{
-    vector<TreeNode *> traversal;
-
-    inorder(root, traversal);
+    return successor;
 }
 
 int main()

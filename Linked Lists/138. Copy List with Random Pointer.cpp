@@ -41,7 +41,7 @@ Node *copyRandomList(Node *head)
     Node *c1 = head;
     Node *c2 = newHead;
 
-    while (c1->next != NULL)
+    while (c1!= NULL)
     {
         if (c1->random != NULL)
         {

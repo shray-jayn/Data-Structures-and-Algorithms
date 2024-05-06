@@ -26,10 +26,8 @@ ListNode *deleteDuplicates(ListNode *head)
 
     while (curr != NULL)
     {
-
         while (curr != NULL and itr->val == curr->val)
         {
-
             curr = curr->next;
         }
 
